@@ -6,7 +6,7 @@ gem 'rails', '3.2.8'
 gem "bcrypt-ruby", :require => "bcrypt"
 
 # Styling
-gem 'less-rails-bootstrap'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'less-rails'
 gem 'therubyracer'
 

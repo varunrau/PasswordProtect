@@ -3,7 +3,7 @@
   border: 1px solid #efefef;
   margin: 0 auto;
   width: 400px;
-  height: 400px;
+  height: 320px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -16,5 +16,12 @@
 }
 
 .signup-card {
-  padding: 10px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-top: 25px;
+}
+
+h1 {
+  padding-bottom: 20px;
 }
