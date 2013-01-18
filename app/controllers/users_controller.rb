@@ -30,12 +30,17 @@ class UsersController < ApplicationController
 
   def addlogin
     @login = Login.new(params[:login])
-    @login.user_id = current_user
+    @login.user_id = current_user.id
     if @login.save
       redirect_to root_url, :notice => "Added new login"
     else
       redirect_to root_url, :notice => "Couldn't add login"
     end
+  end
+
+  def search
+    @test = 'facebook'
+    redirect_to root_url, :notice => "Search"
   end
 
   def deletelogin

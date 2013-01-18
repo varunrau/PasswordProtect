@@ -5,15 +5,16 @@ PasswordProtect::Application.routes.draw do
   get "sessions/new"
   get "users/new"
   get "sign_up" => "users#new"
-  root :to => "users#new"
   resources :users
   resources :sessions
+
+  # Login Page
   get "logins" => 'users#logins', :as => 'logins'
-
   delete "logins" => 'users#deletelogin', :as => 'logins'
-
   post 'logins' => 'users#addlogin', :as => 'add_login'
+  post "logins" => 'users#search', :as => 'search'
 
+  # Root
   root :to => "users#new"
 
 end
