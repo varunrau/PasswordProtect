@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
+
   def new
-    @user = User.new
+    if current_user
+      render :text => "Logged In"
+    else
+      @user = User.new
+    end
   end
 
   def create

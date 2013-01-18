@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PasswordProtect</title>
+  <title>Password Protect</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,10 +11,21 @@
   <div class='navbar'>
     <div class='navbar-inner'>
       <%= link_to 'Password Protect', root_url, :class => 'brand' %>
+      <% if current_user %>
+        <ul class='nav'>
+          <li class='divider-vertical'>
+          <%= link_to 'My Passwords', root_url %>
+          </li>
+        </ul>
+      <% end %>
       <ul class='nav pull-right'>
         <li id='fat-menu' class='dropdown'>
         <a href='#' id='account' role='button' class='dropdown-toggle' data-toggle='dropdown'>
-          Account Settings
+          <% if current_user %>
+            <%= current_user.email %>
+          <% else %>
+            Account
+          <% end %>
           <b class='caret'></b>
         </a>
         <ul class='dropdown-menu' role='menu' aria-labelledby='account'>
@@ -30,15 +41,10 @@
             <%= link_to 'Log in', log_in_path %>
             </li>
           <% end %>
-        </li>
       </ul>
     </div>
   </div>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => 'flash{name}' %>
-  <% end %>
-
+  <%= render partial: 'layouts/messages', flash: flash %>
   <%= yield %>
-
 </body>
 </html>

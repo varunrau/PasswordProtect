@@ -17,4 +17,7 @@
 
 $(document).ready(function() {
     $('.dropdown-toggle').dropdown();
+
+    // Auto hide flash
+    $(".alert-success").fadeOut(4000);
 });
