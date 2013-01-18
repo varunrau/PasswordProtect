@@ -2,10 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
+# Used for encryption
 gem "bcrypt-ruby", :require => "bcrypt"
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Styling
+gem 'less-rails-bootstrap'
+gem 'less-rails'
+gem 'therubyracer'
 
 group :development do
     gem 'sqlite3'
