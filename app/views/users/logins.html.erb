@@ -1,0 +1,30 @@
+Your id is <%= @id %>
+Your login's id is <%= @login.user_id %>
+<%# You have <%= @logins.length %1> logins. %>
+
+<div class='row-fluid'>
+  <div class='span4'>
+    <%= form_for @login do |f| %>
+      <% if @login.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @login.errors.full_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <p>
+      <%= f.text_field :user_name, :placeholder => 'User Name or Email' %>
+      </p>
+      <p>
+      <%= f.password_field :password, :placeholder => 'Password' %>
+      </p>
+      <%= f.submit "Add Login", :class => 'btn' %>
+    <% end %>
+  </div>
+  <div class='span8'>
+  </div>
+</div>
+

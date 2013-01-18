@@ -8,6 +8,9 @@ PasswordProtect::Application.routes.draw do
   root :to => "users#new"
   resources :users
   resources :sessions
+  get "logins" => 'users#logins', :as => 'logins'
+
+  post 'logins' => 'users#addlogin', :as => 'add_login'
 
   root :to => "users#new"
 
