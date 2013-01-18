@@ -1,30 +1,51 @@
-Your id is <%= @id %>
-Your login's id is <%= @login.user_id %>
-<%# You have <%= @logins.length %1> logins. %>
 
 <div class='row-fluid'>
   <div class='span4'>
-    <%= form_for @login do |f| %>
-      <% if @login.errors.any? %>
-        <div class="error_messages">
-          <h2>Form is invalid</h2>
-          <ul>
-            <% for message in @login.errors.full_messages %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
+    <div class='wrapper'>
+      <%= form_for @login do |f| %>
+        <% if @login.errors.any? %>
+          <div class="error_messages">
+            <h2>Form is invalid</h2>
+            <ul>
+              <% for message in @login.errors.full_messages %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <p>
+        <%= f.text_field :user_name, :placeholder => 'User Name or Email' %>
+        </p>
+        <p>
+        <%= f.password_field :password, :placeholder => 'Password' %>
+        </p>
+        <%= f.submit "Add Login", :class => 'btn' %>
       <% end %>
-      <p>
-      <%= f.text_field :user_name, :placeholder => 'User Name or Email' %>
-      </p>
-      <p>
-      <%= f.password_field :password, :placeholder => 'Password' %>
-      </p>
-      <%= f.submit "Add Login", :class => 'btn' %>
-    <% end %>
+    </div>
   </div>
   <div class='span8'>
+    <div class='wrapper'>
+      <table class='table table-striped'>
+        <caption>Your Logins</caption>
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @logins %>
+            <% @logins.each do |login| %>
+              <tr>
+                <td><%= login.user_name %></td>
+                <td><%= login.password %></td>
+                <td><%= button_to "Delete", {:controller => :users, :action => 'deletelogin', :id => login.id }, method: :delete, :class => 'btn' %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

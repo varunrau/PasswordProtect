@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def logins
     if current_user
       @id = current_user.id
-      @logins = Login.find_by_user_id(current_user.id)
+      @logins = Login.find_all_by_user_id(current_user.id)
       @login = Login.new
       @login.user_id = current_user.id
     else
@@ -30,10 +30,22 @@ class UsersController < ApplicationController
 
   def addlogin
     @login = Login.new(params[:login])
+    @login.user_id = current_user
     if @login.save
       redirect_to root_url, :notice => "Added new login"
     else
       redirect_to root_url, :notice => "Couldn't add login"
     end
   end
+
+  def deletelogin
+    @login = Login.find(params[:id])
+    @login.destroy
+
+    respond_to do |format|
+      format.html { redirect_to root_url :notice => "Login removed" }
+      format.json { head :no_content }
+    end
+  end
+
 end
