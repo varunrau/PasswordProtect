@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def logins
+    @revealed_logins ||= Array.new
     if current_user
       @logins = Login.find_all_by_user_id(current_user.id, :order => sort_column + ' ' + sort_direction)
 
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    puts 'SEARCHING'
+
   end
 
   def deletelogin
@@ -49,6 +50,15 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to root_url :notice => "Login removed" }
+      format.json { head :no_content }
+    end
+  end
+
+  def reveal
+    login = Login.find(params[:id])
+    @revealed_logins += login
+    respond_to do |format|
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
   end

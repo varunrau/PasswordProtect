@@ -1,3 +1,4 @@
+
 module ApplicationHelper
 
   def sortable(column, title = nil)
@@ -12,6 +13,11 @@ module ApplicationHelper
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+
+  def scrambled_password
+    random_string = SecureRandom.hex(16)
+    return random_string
   end
 
 end

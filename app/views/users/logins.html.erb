@@ -29,10 +29,10 @@
   <div class='span8'>
     <div class='wrapper'>
       <% if @logins.length > 0 %>
-        <%# <%= form_tag search_path do %1> %>
-        <%#   <%= submit_tag 'Search', :class => 'btn pull-right', :id => 'search-button' %1> %>
-        <%#   <%= text_field_tag :search, params[:search], :class => 'input-medium search-query pull-right search-button' %1> %>
-        <%# <% end %1> %>
+        <%= form_tag search_path do %>
+          <%= submit_tag 'Search', :class => 'btn pull-right', :id => 'search-button' %>
+          <%= text_field_tag :search, params[:search], :method => 'get', :class => 'input-medium search-query pull-right search-button' %>
+        <% end %>
         <table class='table table-striped table-sort'>
           <caption>Your Logins</caption>
           <thead>
@@ -48,7 +48,12 @@
                 <tr>
                   <td><%= login.org %></td>
                   <td><%= login.user_name %></td>
-                  <td><%= login.password %></td>
+                  <% if @revealed_logins.include?(login) %>
+                    <td><%= login.password %></td>
+                  <% else %>
+                    <td><%= scrambled_password %></td>
+                  <% end %>
+                  <td><%= button_to "Reveal", { :controller => :users, :action => 'reveal', :id => login.id }, method: :get, :class => 'btn' %></td>
                   <td><%= button_to "Delete", {:controller => :users, :action => 'deletelogin', :id => login.id }, method: :delete, :class => 'btn' %></td>
                 </tr>
               <% end %>
@@ -62,4 +67,5 @@
   </div>
 </div>
 
+<%= debug @revealed_logins %>
 
