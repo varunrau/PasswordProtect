@@ -39,3 +39,20 @@ h1 {
 .search-button {
   margin-right: 10px;
 }
+
+.table-sort th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.table-sort th .asc {
+  background-image: url(up_arrow.gif)
+}
+
+.table-sort th .desc {
+  background-image: url(down_arrow.gif)
+}
+
+
+

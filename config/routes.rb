@@ -12,7 +12,7 @@ PasswordProtect::Application.routes.draw do
   get "logins" => 'users#logins', :as => 'logins'
   delete "logins" => 'users#deletelogin', :as => 'logins'
   post 'logins' => 'users#addlogin', :as => 'add_login'
-  post "logins" => 'users#search', :as => 'search'
+  get "logins" => 'users#search', :as => 'search'
 
   # Root
   root :to => "users#new"

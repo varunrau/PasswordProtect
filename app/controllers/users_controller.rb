@@ -19,8 +19,9 @@ class UsersController < ApplicationController
 
   def logins
     if current_user
-      @id = current_user.id
-      @logins = Login.find_all_by_user_id(current_user.id)
+      @logins = Login.find_all_by_user_id(current_user.id, :order => sort_column + ' ' + sort_direction)
+
+      # In case the user decides to create a new login
       @login = Login.new
       @login.user_id = current_user.id
     else
@@ -39,8 +40,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    @test = 'facebook'
-    redirect_to root_url, :notice => "Search"
+    puts 'SEARCHING'
   end
 
   def deletelogin
@@ -52,5 +52,14 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def sort_column
+    Login.column_names.include?(params[:sort]) ? params[:sort] : 'org'
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+
 
 end

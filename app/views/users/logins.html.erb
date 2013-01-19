@@ -29,17 +29,17 @@
   <div class='span8'>
     <div class='wrapper'>
       <% if @logins.length > 0 %>
-        <%= form_tag search_url do %>
-          <%= submit_tag 'Search', :class => 'btn pull-right' %>
-          <%= text_field_tag :login, params[:login], :class => 'input-medium search-query pull-right search-button' %>
-        <% end %>
-        <table class='table table-striped'>
+        <%# <%= form_tag search_path do %1> %>
+        <%#   <%= submit_tag 'Search', :class => 'btn pull-right', :id => 'search-button' %1> %>
+        <%#   <%= text_field_tag :search, params[:search], :class => 'input-medium search-query pull-right search-button' %1> %>
+        <%# <% end %1> %>
+        <table class='table table-striped table-sort'>
           <caption>Your Logins</caption>
           <thead>
             <tr>
-              <th>Title or Organization</th>
-              <th>User Name</th>
-              <th>Password</th>
+              <th><%= sortable 'org', 'Organization or Title' %></th>
+              <th><%= sortable 'user_name', 'User Name or Email' %></th>
+              <th><%= sortable 'password', 'Password' %></th>
             </tr>
           </thead>
           <tbody>
@@ -61,4 +61,5 @@
     </div>
   </div>
 </div>
+
 
