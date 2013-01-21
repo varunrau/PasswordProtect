@@ -18,7 +18,10 @@ class UsersController < ApplicationController
   end
 
   def logins
-    $revealed_logins ||= Array.new
+    unless session[:revealed]
+      session[:revealed] = Array.new
+    end
+
     if current_user
       @logins = Login.find_all_by_user_id(current_user.id, :order => sort_column + ' ' + sort_direction)
 
@@ -41,7 +44,6 @@ class UsersController < ApplicationController
   end
 
   def search
-    $revealed_logins ||= Array.new
     if current_user
       @logins = Login.where("user_id = ? AND org = ? OR user_name = ?", current_user.id, params[:query], params[:query])
       @login = Login.new
@@ -62,8 +64,10 @@ class UsersController < ApplicationController
   end
 
   def reveal
-    login = Login.find(params[:id])
-    $revealed_logins += login
+    puts params[:id]
+    login = Login.find(:id)
+    session[:revealed] += login
+    @revealed_logins = session[:revealed]
     respond_to do |format|
       format.html { redirect_to root_url }
       format.json { head :no_content }

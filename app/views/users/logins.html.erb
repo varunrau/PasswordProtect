@@ -46,6 +46,7 @@
             <% if @logins %>
               <% @logins.each do |login| %>
                 <tr>
+                  <%= debug login %>
                   <td><%= login.org %></td>
                   <td><%= login.user_name %></td>
                     <td><%= login.password %></td>
