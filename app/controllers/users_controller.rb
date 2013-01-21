@@ -22,6 +22,8 @@ class UsersController < ApplicationController
       session[:revealed] = Array.new
     end
 
+    @revealed_logins = session[:revealed]
+
     if current_user
       @logins = Login.find_all_by_user_id(current_user.id, :order => sort_column + ' ' + sort_direction)
 
@@ -64,10 +66,12 @@ class UsersController < ApplicationController
   end
 
   def reveal
-    puts params[:id]
-    login = Login.find(:id)
-    session[:revealed] += login
+    login = Login.find(params[:id])
+    login.to_string()
+    session[:revealed] << login
     @revealed_logins = session[:revealed]
+    puts 'pringing logins'
+    puts @revealed_logins
     respond_to do |format|
       format.html { redirect_to root_url }
       format.json { head :no_content }

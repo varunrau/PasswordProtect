@@ -1,6 +1,6 @@
 
 <div class='row-fluid'>
-  <div class='span4'>
+  <div class='span3'>
     <div class='wrapper'>
       <%= form_for @login do |f| %>
         <% if @login.errors.any? %>
@@ -26,7 +26,7 @@
       <% end %>
     </div>
   </div>
-  <div class='span8'>
+  <div class='span9'>
     <div class='wrapper'>
       <% if @logins.length > 0 %>
         <%= form_tag search_path do %>
@@ -46,12 +46,14 @@
             <% if @logins %>
               <% @logins.each do |login| %>
                 <tr>
-                  <%= debug login %>
                   <td><%= login.org %></td>
                   <td><%= login.user_name %></td>
-                    <td><%= login.password %></td>
+                  <% if @revealed_logins.include?(login) %>
+                    <td> <%= login.password %></td>
+                  <% else %>
                     <td><%= scrambled_password %></td>
-                  <td><%= button_to "Reveal", { :controller => :users, :action => 'reveal', :id => login.id }, method: :get, :class => 'btn' %></td>
+                    <td><%= button_to "Reveal", { :controller => :users, :action => 'reveal', :id => login.id }, method: :get, :class => 'btn' %></td>
+                  <% end %>
                   <td><%= button_to "Delete", {:controller => :users, :action => 'deletelogin', :id => login.id }, method: :delete, :class => 'btn' %></td>
                 </tr>
               <% end %>
@@ -59,11 +61,8 @@
           </tbody>
         </table>
       <% else %>
-        <h3>You can create a Login using the form on the left.</h3>
+        <h3>You can add a Login using the form on the left.</h3>
       <% end %>
     </div>
   </div>
 </div>
-
-<%= debug @revealed_logins %>
-
