@@ -58,5 +58,8 @@ module PasswordProtect
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Force the use of ssl for security
+    config.force_ssl = true
   end
 end
