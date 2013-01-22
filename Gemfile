@@ -11,7 +11,7 @@ gem 'less-rails'
 gem 'therubyracer'
 
 # Encryption
-gem gibberish
+gem 'gibberish'
 
 group :development do
     gem 'sqlite3'
