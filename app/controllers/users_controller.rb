@@ -70,8 +70,6 @@ class UsersController < ApplicationController
     login.to_string()
     session[:revealed] << login
     @revealed_logins = session[:revealed]
-    puts 'pringing logins'
-    puts @revealed_logins
     respond_to do |format|
       format.html { redirect_to root_url }
       format.json { head :no_content }
