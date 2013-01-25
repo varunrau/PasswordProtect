@@ -10,6 +10,9 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'less-rails'
 gem 'therubyracer'
 
+# User Authentication
+gem 'devise'
+
 
 group :development do
     gem 'sqlite3'

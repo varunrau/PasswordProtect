@@ -16,6 +16,6 @@ get 'log_in' => 'sessions#new', :as => 'log_in'
   get "reveal/:id" => 'users#reveal', :as => 'reveal'
 
   # Root
-  root :to => "users#logins"
+  root :to => "sessions#new"
 
 end
