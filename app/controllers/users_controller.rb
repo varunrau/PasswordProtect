@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     session[:revealed] << login
     @revealed_logins = session[:revealed]
     respond_to do |format|
-      format.html { redirect_to root_url }
+      format.html { redirect_to logins_url }
       format.json { head :no_content }
     end
   end
