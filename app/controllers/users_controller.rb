@@ -40,9 +40,9 @@ class UsersController < ApplicationController
     @login = Login.new(params[:login])
     @login.user_id = current_user.id
     if @login.save
-      redirect_to root_url, :notice => "Added new login"
+      redirect_to logins_path, :notice => "Added new login"
     else
-      redirect_to root_url, :notice => "Couldn't add login"
+      redirect_to logins_path, :notice => "Couldn't add login"
     end
   end
 
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     session[:revealed] << login
     @revealed_logins = session[:revealed]
     respond_to do |format|
-      format.html { redirect_to logins_url }
+      format.html { redirect_to logins_path }
       format.json { head :no_content }
     end
   end
