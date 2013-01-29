@@ -1,0 +1,2 @@
+
+$('input, password').placeholder();

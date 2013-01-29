@@ -1,4 +1,9 @@
 
+<script src='https://github.com/mathiasbynens/jquery-placeholder/blob/master/jquery.placeholder.min.js'>
+</script>
+<script>
+  $('password').placeholder();
+</script>
 <div class='signup-wrapper'>
   <div class='signup-card'>
     <h1>Log in</h1>
@@ -8,7 +13,7 @@
       <%= text_field_tag :email, params[:email], :placeholder => "Email" %>
       </p>
       <p>
-      <%= password_field_tag :password %>
+      <%= password_field_tag :password, :id => 'password' %>
       </p>
       <%= submit_tag "Log In", :class => 'btn' %>
     <% end %>

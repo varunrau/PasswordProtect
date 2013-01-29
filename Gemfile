@@ -13,6 +13,9 @@ gem 'therubyracer'
 # User Authentication
 gem 'devise'
 
+# Encryption of passwords
+gem 'gibberish'
+
 
 group :development do
     gem 'sqlite3'

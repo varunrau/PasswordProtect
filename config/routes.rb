@@ -15,7 +15,11 @@ get 'log_in' => 'sessions#new', :as => 'log_in'
   post "search" => 'users#search', :as => 'search'
   get "reveal/:id" => 'users#reveal', :as => 'reveal'
 
+  # API Subdomain
+  # match "/users/:id" => "api#user", constraints => { :subdomain => 'api' }
+  # match "/login/:id" => "api#user", constraints => { :subdomain => 'api' }
+
   # Root
-  root :to => "sessions#new"
+  root :to => 'sessions#new'
 
 end
