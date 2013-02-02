@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
+  before_filter :set_login_password
   # before_filter :prepare_for_mobile
   # before_filter :check_if_valid
   # after_filter :update_time
@@ -18,6 +19,18 @@ class ApplicationController < ActionController::Base
     else
       request.user.agent =~ /Mobile|webOS/
     end
+  end
+
+  def set_login_password
+    puts 'the session password is ...'
+    print session[:password]
+    logins = Login.find_all_by_user_id(session[:user_id])
+    logins.each { |login|
+      # I'm not sure how kosher this is...
+      login.set_session_password(session[:password])
+    }
+    # We want to keep around this password for as little time as possible
+    session[:password] = nil
   end
 
   def prepare_for_mobile

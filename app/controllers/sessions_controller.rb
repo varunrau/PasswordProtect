@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       redirect_to logins_url, :notice => 'Logged in!'
+      puts 'the password is ...'
+      puts params[:password]
       session[:password] = params[:password]
+      puts session
+      puts params
     else
       flash.now.alert = 'Invalid email or password'
       render 'new'

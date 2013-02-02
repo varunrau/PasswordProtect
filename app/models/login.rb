@@ -1,3 +1,5 @@
+include Gibberish
+
 class Login < ActiveRecord::Base
   attr_accessible :password, :user_name, :org
   belongs_to :user
@@ -13,14 +15,21 @@ class Login < ActiveRecord::Base
   end
 
   def encrypt_password
-    cipher = Gibberish::AES.new(session[:password])
-    self.key = cipher.enc(self.password)
-    self.password = nil
+    puts @password
+    cipher = Gibberish::AES.new(@password)
+    puts cipher
+    self.key = cipher.enc(@password)
   end
 
   def decrypt_password
-    cipher = Gibberish::AES.new(session[:password])
+    cipher = Gibberish::AES.new(@password)
     self.password = cipher.dec(self.key)
     self.key = nil
   end
+
+  public
+  def set_session_password(password)
+    @password = password
+  end
+
 end
