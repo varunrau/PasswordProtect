@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user
+  helper_method :current_user, :mobild_devise?
   before_filter :set_login_password
   # before_filter :prepare_for_mobile
-  # before_filter :check_if_valid
+  before_filter :check_if_valid
   # after_filter :update_time
 
   private
@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :mobile_device?
 
   def mobile_devise?
     if session[:mobile_param]

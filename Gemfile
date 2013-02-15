@@ -8,7 +8,7 @@ gem "bcrypt-ruby", :require => "bcrypt"
 # Styling
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'less-rails'
-gem 'therubyracer'
+gem 'therubyracer', '~> 0.11.3'
 
 # User Authentication
 gem 'devise'
